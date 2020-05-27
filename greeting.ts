@@ -7,33 +7,29 @@
       interface iPerson{
         firstName : string;
         lastName  : string;
-        age : string;
-        phoneNum : number;
-        state : string;
-        zipCode : number;
-        occupation : string;
-        hourlyWage : number;
-        certification :string[];
-
+        age? : number;
+        phoneNum? : number;
+        state? : string;
+      
       }
 
       //Person class
 
-    class Person {
-        private firstName: string;
-        private lastName: string;
-        private age: number;
-        private phoneNum: number;
-        private state: string;
-        private zipCode: number;
+    class Person implements iPerson {
+         firstName: string;
+         lastName: string;
+         age: number;
+         phoneNum: number;
+         state: string;
+        zipCode: number;
         private occupation: string;
         private hourlyWage?: number;
         private hours?: number;
         private certification: string[] = [];
 
         //Constuctor
-        constructor(firstName: string,lastName: string,age: number,phoneNum: number,state: string,
-          zipCode: number,occupation: string, hourlyWage?: number, hours?: number,) 
+        constructor(firstName: string,lastName: string,age?: number,phoneNum?: number,state?: string,
+          zipCode?: number,occupation?: string, hourlyWage?: number, hours?: number,) 
         {
           this.firstName = firstName;
           this.lastName = lastName;
@@ -102,7 +98,7 @@
                  +this.phoneNum);
         }
         nameAndAddress(): string {
-          return ("My name is  " +this.firstName + "  " +this.lastName +"and I live in " +this.state
+          return ("My name is  " +this.firstName + "  " +this.lastName +" and I live in " +this.state
             +" with Zipcode " +this.zipCode );
         }
         wageRate(): any 
@@ -120,8 +116,8 @@
           this.certification.push(...degrees);
           return "My Certifications are:"+this.certification.join(",");
         }
-        createPerson(person?: iPerson):{firstName:string;lastName:string}{
-          return person;
+         static createEmp(person?: iPerson):Person{
+          return new Person(person.firstName,person.lastName);
         }
 
       }
@@ -135,7 +131,9 @@
       document.getElementById("personNameAddress").innerHTML = Tarini.nameAndAddress();
       document.getElementById("personWage").innerHTML = John.wageRate();
       document.getElementById("personCert").innerHTML = John.addCerts("MBA","CSM","MCSD");
-
+      document.getElementById("Inf").innerHTML=Person.createEmp({
+        firstName:"Peter",lastName:"Mahi"}).fullName();
+      
       
 
 

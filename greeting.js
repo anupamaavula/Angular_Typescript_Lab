@@ -65,7 +65,7 @@ var Person = /** @class */ (function () {
             + this.phoneNum);
     };
     Person.prototype.nameAndAddress = function () {
-        return ("My name is  " + this.firstName + "  " + this.lastName + "and I live in " + this.state
+        return ("My name is  " + this.firstName + "  " + this.lastName + " and I live in " + this.state
             + " with Zipcode " + this.zipCode);
     };
     Person.prototype.wageRate = function () {
@@ -87,8 +87,8 @@ var Person = /** @class */ (function () {
         (_a = this.certification).push.apply(_a, degrees);
         return "My Certifications are:" + this.certification.join(",");
     };
-    Person.prototype.createPerson = function (person) {
-        return person;
+    Person.createEmp = function (person) {
+        return new Person(person.firstName, person.lastName);
     };
     return Person;
 }());
@@ -101,3 +101,6 @@ document.getElementById("personNameNum").innerHTML = Anil.nameAndNum();
 document.getElementById("personNameAddress").innerHTML = Tarini.nameAndAddress();
 document.getElementById("personWage").innerHTML = John.wageRate();
 document.getElementById("personCert").innerHTML = John.addCerts("MBA", "CSM", "MCSD");
+document.getElementById("Inf").innerHTML = Person.createEmp({
+    firstName: "Peter", lastName: "Mahi"
+}).fullName();
